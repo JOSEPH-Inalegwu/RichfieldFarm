@@ -1,9 +1,37 @@
 import { Link, NavLink } from "react-router-dom"
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
+
+  const headerRef = useRef(null);
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      scrollTop > lastScrollTop ? setIsHidden(true) : setIsHidden(false);
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile or negative scrolling
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const headerStyle = {
+    transform: isHidden ? 'translateY(-45%)' : 'translateY(0)',
+    transition: 'transform 0.3s ease-in-out',
+  };
+
   return (
     <>
-      <header className='border-b font-[sans-serif] tracking-wide relative z-50 shadow-md'>
+      <header ref={headerRef} style={headerStyle} className='border-b font-[sans-serif] tracking-wide z-50 shadow-md top-0 sticky bg-white'>
         <section className='py-3 bg-[#153d38] text-white text-center px-10'>
           <p className='text-sm p-2'>Summer Sale: Save up to 40% on select items. <span className="text-red-500">Limited-time offer!</span></p>
         </section>
