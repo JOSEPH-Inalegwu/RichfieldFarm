@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Testimonial from "../Testimonial/Testimonial"
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <Testimonial />
     </>
   )
 }
