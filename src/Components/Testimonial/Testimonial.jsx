@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react"
 
+import proilePic01 from '../../assets/profilepic01.jpg'
+import proilePic02 from '../../assets/profilepic02.jpg'
+
+
 const Testimonial = () => {
-    const [testimonials, setTestimonials] = useState();  
+    const [testimonials, setTestimonials] = useState([]);  
 
     useEffect(() => {
-      // Simulate fetching data or initializing the state
+      // Simulate fetching data
       const fetchedTestimonials = [
         {
           name: 'John Doe',
           jobTitle: 'CEO, Company',
-          profile: 'https://readymadeui.com/team-1.webp',
+          profile: proilePic02,
           message:
             'The service was amazing. I never had to wait that long for my food. The staff was friendly and attentive, and the delivery was impressively prompt.'
         },
         {
           name: 'Jane Smith',
           jobTitle: 'CTO, Another Company',
-          profile: 'https://readymadeui.com/team-2.webp',
+          profile: proilePic01,
           message:
             'I loved the professionalism and dedication to quality. The team really exceeded expectations!'
         },
@@ -29,13 +33,12 @@ const Testimonial = () => {
         }
       ];
   
-      // Set the testimonials state
       setTestimonials(fetchedTestimonials);
-    }, []); // Empty dependency array ensures this runs only once
+    }, []); 
 
   return (
     <>
-      <div className="p-4 my-6 font-[sans-serif] max-w-6xl max-lg:max-w-3xl max-md:max-w-lg mx-auto">
+      <div className="p-4 my-6 font-[sans-serif] max-w-6xl max-lg:max-w-3xl max-md:max-w-xl mx-auto">
       <div className="max-w-2xl">
         <h2 className="text-gray-800 text-2xl font-bold md:text-3xl">What our happy client say</h2>
         <p className="text-sm text-gray-500 mt-4 leading-relaxed">Veniam proident aute magna anim excepteur et ex consectetur velit ullamco veniam minim aute sit. Elit occaecat officia et laboris Lorem minim. Officia do aliqua adipisicing ullamco in.</p>
@@ -46,7 +49,7 @@ const Testimonial = () => {
         <>
           <div key={index} className="border border-gray-300 lg:p-6 p-4 rounded-xl bg-white relative">
           <div className="flex items-center">
-            <img src="https://readymadeui.com/team-1.webp" className="w-14 h-14 rounded-full border border-purple-600" />
+            <img src={testimonial.profile} className="w-14 h-14 rounded-full border border-purple-600" />
             <div className="ml-4">
               <h6 className="text-gray-800 text-sm font-semibold"> {testimonial.name} </h6>
               <p className="text-xs text-gray-500 mt-1">
