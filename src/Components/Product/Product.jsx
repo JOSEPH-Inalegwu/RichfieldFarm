@@ -5,7 +5,7 @@ const Product = () => {
   return (
     <>
       <div className="lg:mx-12 my-8">
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-8 md:gap-3 lg:px-0 pb-12 space-y-6">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-8 md:gap-3 lg:px-0">
           {products.map((product) => (
             <ProductCard
               key={product.id}
@@ -13,7 +13,8 @@ const Product = () => {
               description={product.description}
               id={product.id}
               image={product.image}
-              priceInCent={product.priceInCent}
+              rating={product.rating}
+              priceInKobo={product.priceInKobo}
             />
           ))}
         </div>

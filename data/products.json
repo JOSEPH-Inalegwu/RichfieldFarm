@@ -4,7 +4,7 @@
     "name": "2kg Red Beef",
     "description": "Freshly cut premium red beef.",
     "image": "src/assets/meat2.png",
-    "priceInCent": 90000,
+    "priceInKobo": 300000,
     "quality": 1
   },
   {
@@ -12,7 +12,7 @@
     "name": "Basket of Tomatoes",
     "description": "Organic and fresh tomatoes.",
     "image": "src/assets/tomato.jpg",
-    "priceInCent": 30000,
+    "priceInKobo": 250000,
     "quality": 1
   },
   {
@@ -20,7 +20,7 @@
     "name": "4kg Fresh Shrimps",
     "description": "High-quality fresh shrimps.",
     "image": "src/assets/shrimp.jpg",
-    "priceInCent": 80000,
+    "priceInKobo": 350000,
     "quality": 1
   },
   {
@@ -28,7 +28,7 @@
     "name": "6kg Spiced Crabs",
     "description": "Delicious and spiced crabs.",
     "image": "src/assets/crab.jpg",
-    "priceInCent": 120000,
+    "priceInKobo": 600000,
     "quality": 1
   },
   {
@@ -36,7 +36,7 @@
     "name": "Fresh Fish",
     "description": "Freshly caught fish.",
     "image": "src/assets/fish03.jpg",
-    "priceInCent": 70000,
+    "priceInKobo": 270000,
     "quality": 1
   }
 ]

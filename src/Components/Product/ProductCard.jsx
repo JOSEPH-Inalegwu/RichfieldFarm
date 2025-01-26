@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux'; // Import useDispatch hook
 import { addToCart } from '../../redux/features/cart/cartSlice'; // Import the action to add to cart
 
 import IncrementFeature from '../Utils/IncrementFeature'; // The Increment feature of the product cards
+
+import { formatPrice } from '../Utils/FormatCurrency'; //Handles the price format 
 
 function ProductCard({
   name = 'Product',
   description = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
   id = '0000',
   image = 'src/assets/no_image.png',
-  priceInCent = 4000,
+  priceInKobo = 4000,
 }) {
   const [value, setValue] = useState(1);
   const [added, setAdded] = useState(false); // Local state for showing the "Added" notification
@@ -23,7 +26,7 @@ function ProductCard({
       name,
       description,
       image,
-      priceInCent,
+      priceInKobo,
       quantity: value,
     }));
     setAdded(true); // Show the "Added" notification
@@ -32,9 +35,12 @@ function ProductCard({
     }, 2000);
   };
 
+  // Handles the product price
+  const formattedPrice = formatPrice(priceInKobo)
+
   return (
     <>
-    <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-sm w-full">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-sm w-full my-6">
     <div className="relative">
       <img src={image} alt="Product image" className="w-full h-44 object-cover" />
       <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">SALE</span>
@@ -65,8 +71,12 @@ function ProductCard({
   
       {/* Currency */}
       <div className="py-2 flex items-center gap-10">
-        <p className="text-lg font-bold text-green-600">₦{priceInCent.toLocaleString()}</p>
-        <p className="text-sm text-gray-500 line-through">$159.99</p>
+        <p className="text-lg font-bold text-green-600">
+          ₦{ formattedPrice }
+        </p>
+        <p className="text-sm text-gray-500 line-through">
+        {formatPrice(priceInKobo + 150000)}
+        </p>
       </div>
       <div className="flex items-center mb-2">
         <div className="flex text-yellow-400">
@@ -110,12 +120,19 @@ function ProductCard({
           Add to Cart
         </button>
 
-        <IncrementFeature />
+        <IncrementFeature value={value} setValue={setValue} />
       </div>
     </div>
   </div>
     </>
   );
 }
+ProductCard.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+  id: PropTypes.string,
+  image: PropTypes.string,
+  priceInKobo: PropTypes.number,
+};
 
 export default ProductCard;
