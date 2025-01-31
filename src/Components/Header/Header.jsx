@@ -1,10 +1,17 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
   const headerRef = useRef(null);
   const [isHidden, setIsHidden] = useState(false);
+  const location = useLocation();
+
+  const isProductPage = location.pathname === '/product' || location.pathname === '/cart'
+
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartItemCount = cartItems.length;
 
   useEffect(() => {
     let lastScrollTop = 0;
@@ -120,16 +127,71 @@ const Header = () => {
 
               <div className='flex items-center sm:space-x-8 space-x-6'>
                 <div className="flex flex-col items-center justify-center gap-0.5 cursor-pointer">
-                  {/* CART ICON */}
-                  <div className="relative border border-gray-300 p-2 rounded-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" className="cursor-pointer fill-[#333] inline"
-                      viewBox="0 0 512 512">
-                      <path
-                        d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
-                        data-original="#000000"></path>
-                    </svg>
-                    <span className="absolute left-auto -ml-1 top-0 rounded-full bg-red-500 px-1 py-0 text-xs text-white">0</span>
-                  </div>
+                  { isProductPage ? (
+                    <div className="flex gap-6">
+
+                      <Link 
+                      className="relative border border-gray-300 p-2 rounded-sm">
+                        <svg
+                          className="cursor-pointer inline"
+                          width='30px' height='30px'
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z"
+                            stroke="#333"
+                            strokeWidth="1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="absolute left-auto -ml-1 top-0 rounded-full bg-red-500 px-1 py-0 text-xs text-white"
+                        >
+                          0
+                        </span>
+                      </Link>
+                      {/* Cart Icon */}
+                      <Link to='cart'
+                      className="relative border border-gray-300 p-2 rounded-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" className="cursor-pointer fill-[#333] inline"
+                          viewBox="0 0 512 512">
+                          <path
+                            d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
+                            data-original="#000000"></path>
+                        </svg>
+                        <span className="absolute left-auto -ml-1 top-0 rounded-full bg-red-500 px-1 py-0 text-xs text-white"
+                        >
+                          { cartItemCount }
+                        </span>
+                      </Link>
+                    </div>
+                  ) : (
+                    <Link to='cart'
+                    className="relative border border-gray-300 p-2 rounded-sm">
+                      <svg
+                          className="cursor-pointer inline"
+                          width='30px' height='30px'
+                          viewBox="0 0 22 22"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z"
+                            stroke="#333"
+                            strokeWidth="1"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      <span className="absolute left-auto -ml-1 top-0 rounded-full bg-red-500 px-1 py-0 text-xs text-white"
+                      >
+                        0
+                      </span>
+                    </Link>
+                  ) }
+               
                 </div>
 
                 <button
