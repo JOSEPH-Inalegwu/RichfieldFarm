@@ -1,7 +1,7 @@
-import { useState } from "react"
+import PropTypes from 'prop-types';
 
-const IncrementFeature = () => {
-  const [value, setValue] = useState(1)
+const IncrementFeature = ({value, setValue}) => {
+
   return (
     <>
       <div className="w-28 flex items-center justify-between rounded-full border border-teal-800 p-1">
@@ -23,4 +23,9 @@ const IncrementFeature = () => {
   )
 }
 
-export default IncrementFeature
+IncrementFeature.propTypes = {
+  value: PropTypes.number.isRequired,
+  setValue: PropTypes.func.isRequired,
+};
+
+export default IncrementFeature;
