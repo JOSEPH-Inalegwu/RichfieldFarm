@@ -13,6 +13,7 @@ import About from './Components/About/About.jsx'
 import Contact from './Components/Contact/Contact.jsx'
 import Product from './Components/Product/Product.jsx'
 import Cart from './Components/Cart/Cart.jsx'
+import Checkout from './Components/Checkout/Checkout.jsx'
 
 
 const router = createBrowserRouter(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path='contact' element={<Contact />} />
       <Route path='product' element={<Product />} />
       <Route path='cart' element={<Cart />} />
+      <Route path='cart/checkout' element={<Checkout />} />
     </Route>
   )
 )
